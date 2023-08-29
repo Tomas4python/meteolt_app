@@ -1,0 +1,7 @@
+The application is created in the process of learning the python programming language.
+
+The application is designed to use Meteo.lt API, which enables receiving and using the publicly provided data measured by the meteorological stations of the Lithuanian Hydrometeorological Service under the Ministry of the Environment and weather forecasts.
+
+The structure of the programming code follows the step sequence of the developers learning process and experimenting with the code, no preliminary code design was done. It won't be done later as the programmer progresses in learning by developing other applications.
+
+The section 'Measured data' accepts only input of the dates in ISO standart 'YYYY-MM-DD'. Measured data are available for a period no earlier than 10 years. Measured and forecast data are updated 8 times a day (approximately every 3 hours), so you can also query measured data only 3 hours before current time.
