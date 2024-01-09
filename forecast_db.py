@@ -39,7 +39,7 @@ class ForecastDB:
 		self.data_klp_forecast = self.get_data_klp.json()['forecastTimestamps']
 		data_length_klp = len(self.data_klp_forecast)
 		data_length = min(data_length_vln, data_length_klp)
-		assert data_length in [74, 77, 78, 79, 80, 82, 83, 84, 85, 86], f'MeteoLT API changed data length to {data_length}!'
+		assert data_length in [74, 77, 78, 79, 80, 82, 83, 84, 85, 86, 87], f'MeteoLT API changed data length to {data_length}!'
 		
 		# Take from entire forecast data timestamp, airtemp, feelsliketemp and sort by forecast days from 1 to 7
 		if data_length == 74:
@@ -62,6 +62,8 @@ class ForecastDB:
 		    loop_list = [(0, 24), (24, 48), (48, 59), (59, 67), (67, 75), (75, 81), (81, 85)]
 		elif data_length == 86:
 		    loop_list = [(0, 24), (24, 48), (48, 59), (59, 67), (67, 75), (75, 82), (82, 86)]
+		elif data_length == 87:
+		    loop_list = [(0, 24), (24, 48), (48, 60), (60, 68), (68, 76), (76, 83), (83, 87)]
 		else:
 		    raise ValueError('Invalid data length!')
 		self.data_vln_byday = {}
