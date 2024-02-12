@@ -26,7 +26,7 @@ class Table(ttk.LabelFrame):
 	def create_widgets_s(self):
 
 		# Create statistics table with treeview widget
-		self.statistics_table = ttk.Treeview(self, columns=('Forecast duration','Amount of data', 'Average', 'Min', '25th percentile', 'Median', '75th percentile', 'Max'), show='headings', height=32)
+		self.statistics_table = ttk.Treeview(self, columns=('Forecast duration','Amount of data', 'Average', 'SD', 'Min', '25th percentile', 'Median', '75th percentile', 'Max'), show='headings', height=32)
 
 		self.statistics_table.heading('Forecast duration', text='Forecast duration')
 		self.statistics_table.column('Forecast duration', width=100, anchor="center")
@@ -34,6 +34,8 @@ class Table(ttk.LabelFrame):
 		self.statistics_table.column('Amount of data', width=100, anchor="center")
 		self.statistics_table.heading('Average', text='Average')
 		self.statistics_table.column('Average', width=100, anchor="center")
+		self.statistics_table.heading('SD', text='SD')
+		self.statistics_table.column('SD', width=100, anchor="center")
 		self.statistics_table.heading('Min', text='First 5 min')
 		self.statistics_table.column('Min', width=180, anchor="center")
 		self.statistics_table.heading('25th percentile', text='25th percentile')
@@ -152,6 +154,16 @@ class Calculations:
 			statistics_vln_f[day].append(average_vln_f)
 			statistics_klp_m[day].append(average_klp_m)
 			statistics_klp_f[day].append(average_klp_f)
+
+			# Calculate standard deviation
+			sd_vln_m = round(np.std(list_vln_m[day]), 2)
+			sd_vln_f = round(np.std(list_vln_f[day]), 2)
+			sd_klp_m = round(np.std(list_klp_m[day]), 2)
+			sd_klp_f = round(np.std(list_klp_f[day]), 2)
+			statistics_vln_m[day].append(sd_vln_m)
+			statistics_vln_f[day].append(sd_vln_f)
+			statistics_klp_m[day].append(sd_klp_m)
+			statistics_klp_f[day].append(sd_klp_f)
 
 			# Calculate 5 min
 			min_vln_m = "   ".join(map(str, (list_vln_m[day][0: 5])))
